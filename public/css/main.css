@@ -1,0 +1,15 @@
+body{
+    background-color: rgb(236, 227, 153);
+    text-align: center;
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 2rem;
+    margin-bottom: 3rem;
+}
+nav a {
+    padding: 0 1rem;
+}

@@ -1,0 +1,25 @@
+
+<h2>{{title}}</h2>
+
+{{#if price}}
+<h3>Price: {{price}}€</h3>
+{{else}}
+<h2>Price upon request</h2>
+{{/if}}
+
+<hr />
+
+<div>
+    <h2>Ingredients</h2>
+
+    <ul>
+        {{#each ingredients}}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
+
+</div>
+
+<img src="/images/{{imageFile}}" alt="margarita">
+
+{{> ctaOrderNow}}

@@ -2,6 +2,7 @@ const express = require("express");
 const hbs = require("hbs");
 const Pizza = require("./models/Pizza.model");
 const mongoose = require("mongoose");
+const bodyParser = require('body-parser')
 
 const app = express();
 
@@ -11,6 +12,8 @@ app.set("views", __dirname + "/views"); //tells our express app where to look fo
 app.set("view engine", "hbs"); //sets HBS as the template engine;
 
 hbs.registerPartials(__dirname + "/views/partials"); //tell HBS which directory we use for partials;
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose
   .connect('mongodb://127.0.0.1/loopeyRestaurant')
@@ -46,7 +49,16 @@ app.get("/contact", (req, res, next) => {
 });
 
 app.get("/pizzas", (req, res, next) => {
-   Pizza.find()
+
+    //console.log(req.query);
+    let maximumPrice = req.query.maxPrice //customer looking to filter by price.
+        maximumPrice = Number(maximumPrice) //convert it to a Number;
+    let filter = {};
+    if(maximumPrice){
+        filter = {price: {$lte: maximumPrice}}
+    }
+
+    Pizza.find(filter)
         .then((pizzasArr) => {
             //const data = {
             //      listOfPizzas: pizzasArr
@@ -109,6 +121,25 @@ app.get("/pizzas/hawaiian", (req, res, next) => {
     })
 })
 */
+
+//app.post(path, code)
+
+
+app.post("/login", (req, res, next) => {
+
+    const email = req.body.emailaddress
+    const pwd = req.body.pwd
+
+    if(pwd === "1234"){
+        res.send("Welcome User")
+    } else {
+        res.send("Ops, wrong password!")
+    }
+    console.log(req.body)
+    
+})
+
+
 //app.listen(3000); // localhost:3000/about
 app.listen(3000, () => {console.log("server listening to port 3000...")});
 

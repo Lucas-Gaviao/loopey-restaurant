@@ -2,4 +2,35 @@
 
 <img src="/images/pizza.jpeg" alt="delicious pizza" />
 
+<section>
+
+        <h3>Search by Price:</h3>
+        
+    <form method="GET" action="/pizzas"> 
+        <label>
+            Max Price:
+            <input type="number" name="maxPrice"/>
+        </label>
+
+        <button type="submit">Submit</button> 
+    </form>
+</section>
+
+<section>
+    <h3>Login:</h3>
+    
+    <form method="POST" action="/login">    
+        <label>
+            Email:
+            <input type="email" name="emailaddress">
+        </label>
+
+        <label>
+            Password:
+            <input type="password" name="pwd" required >
+        </label>
+        <button type="submit">Submit</button>
+    </form>
+</section>
+
 {{> ctaOrderNow}}

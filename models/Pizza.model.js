@@ -25,7 +25,11 @@ const pizzaSchema = new Schema({
         enum: ["classic", "extra thin", "with cheese", "with garlic"]
     },
     ingredients: [String],
-    imageFile: String
+    imageFile: String,
+    stoneBaked: {
+        type: Boolean,
+        default: true
+    }
 });
             
 //create Model
